@@ -46,10 +46,19 @@ public class BookDaoSqlite implements BookDao{
 
     }
 
-
     @Override
     public void addBook(Book book) {
 
+        String sql = "INSERT INTO Books (title, author, pages)"
+                +"VALUES('"+book.getTitle()+"','" +book.getAuthor()+"', "+book.getPages()+")";
+
+        try{
+            Statement statement = connection.createStatement();
+            statement.execute(sql);
+        }
+        catch (SQLException e){
+            System.out.println("Nie udało się wykonać SQL"+e.getMessage());
+        }
     }
 
     @Override
@@ -62,3 +71,4 @@ public class BookDaoSqlite implements BookDao{
         return null;
     }
 }
+
