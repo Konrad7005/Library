@@ -61,6 +61,11 @@ public class BookDaoSqlite implements BookDao{
         }
     }
 
+    public static void main(String[] args ){
+        BookDaoSqlite bookDaoSqlite = new BookDaoSqlite();
+        bookDaoSqlite.addBook(new Book("Pozytywne Myślenie","Brian Tracy",259));
+    }
+
     @Override
     public void removeBook(Book book) {
 

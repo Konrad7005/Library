@@ -6,6 +6,9 @@ package com.dzien7.library.domain;
 public class Book {
 
 
+    public Book(String s, String s1, int i) {
+    }
+
     public int getId() {
         return id;
     }
