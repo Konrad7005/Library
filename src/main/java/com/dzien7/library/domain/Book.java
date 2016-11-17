@@ -4,9 +4,15 @@ package com.dzien7.library.domain;
  * Created by Konrad on 2016-11-16.
  */
 public class Book {
+    private int id;
+    private String title;
+    private String author;
+    private int pages;
 
-
-    public Book(String s, String s1, int i) {
+    public Book(String title, String author, int pages) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
     }
 
     public int getId() {
@@ -41,14 +47,11 @@ public class Book {
         this.pages = pages;
     }
 
-    private int id;
-
-    private String title;
-
-    private String author;
-
-    private int pages;
-
+    public Book(int id, String title, String author) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+    }
 
     public Book(int id, String title, String author, int pages) {
         this.id = id;
@@ -57,13 +60,5 @@ public class Book {
         this.pages = pages;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", pages=" + pages +
-                '}';
-    }
+
 }

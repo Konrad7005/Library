@@ -1,7 +1,10 @@
 package com.dzien7.library.dao;
 
 import com.dzien7.library.domain.Book;
+import com.sun.org.apache.xpath.internal.SourceTree;
+import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
 
+import java.lang.reflect.Field;
 import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -48,8 +51,26 @@ public class BookDaoSqlite implements BookDao{
 
     @Override
     public void addBook(Book book) {
+        // to ponizej to jest wlasnie refleksja
+        String simpleClassName = book.getClass().getSimpleName();
+        System.out.println(simpleClassName);
+        Field[] fields = book.getClass().getDeclaredFields();
+        StringBuilder attributeString = new StringBuilder(" (");
 
-        String sql = "INSERT INTO Books (title, author, pages)"
+        for (Field field: fields ){
+            if ( !field.getName().equals ("id")){
+                attributeString.append (field.getName());
+                attributeString.append(",");
+            }
+            System.out.println(field.getName());
+            System.out.println(field.getType());
+        }
+        attributeString.deleteCharAt(attributeString.length()-1);
+        attributeString.append(")");
+        System.out.println(attributeString);
+        System.out.println(book.getTitle());
+
+        String sql = "INSERT INTO " +simpleClassName+"s"+attributeString
                 +"VALUES('"+book.getTitle()+"','" +book.getAuthor()+"', "+book.getPages()+")";
 
         try{
